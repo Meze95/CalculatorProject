@@ -13,6 +13,7 @@ class Program
             Console.WriteLine(calculator.AddRequirementsFour("1\n4,5,6"));
             Console.WriteLine(calculator.AddRequirementsFive("2,1001,6"));
             Console.WriteLine(calculator.AddRequirementsSix("//#\n2#5"));
+            Console.WriteLine(calculator.AddRequirementsSeven("//[*][!!][%%%]\n1*2!!3%%%4"));
         }
         catch (ArgumentException ex)
         {

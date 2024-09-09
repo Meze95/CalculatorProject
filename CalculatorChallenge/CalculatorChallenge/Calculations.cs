@@ -155,5 +155,64 @@
             return sum;
         }
 
+        public int AddRequirementsSeven(string input)
+        {
+            // Handle the case where the input is null, empty, or whitespace
+            if (string.IsNullOrWhiteSpace(input))
+                return 0;
+
+            string numbersPart = input;
+            List<string> delimiters = new List<string> { ",", "\n" }; // Default delimiters
+
+            // Check if there is a custom delimiter specified
+            if (input.StartsWith("//"))
+            {
+                int delimiterEndIndex = input.IndexOf("\n");
+                string delimiterSection = input.Substring(2, delimiterEndIndex - 2);
+                // Support multiple delimiters of any length enclosed in square brackets
+                if (delimiterSection.StartsWith("[") && delimiterSection.EndsWith("]"))
+                {
+                    // Extract multiple delimiters
+                    int start = 0;
+                    while ((start = delimiterSection.IndexOf("[", start)) != -1)
+                    {
+                        int end = delimiterSection.IndexOf("]", start);
+                        string delimiter = delimiterSection.Substring(start + 1, end - start - 1);
+                        delimiters.Add(delimiter);
+                        start = end + 1;
+                    }
+                }
+                else
+                {
+                    // Single delimiter case without brackets
+                    delimiters.Add(delimiterSection);
+                }
+
+                // Update the number part to exclude the delimiter declaration
+                numbersPart = input.Substring(delimiterEndIndex + 1);
+            }
+
+            // Split using the specified delimiters
+            string[] numbers = numbersPart.Split(delimiters.ToArray(), StringSplitOptions.None);
+
+            // Check for negative numbers
+            List<int> negativeNumbers = numbers
+                .Select(x => int.TryParse(x, out int result) ? result : 0)
+                .Where(n => n < 0)
+                .ToList();
+
+            if (negativeNumbers.Count > 0)
+            {
+                throw new ArgumentException($"Negative numbers not allowed: {string.Join(", ", negativeNumbers)}");
+            }
+
+            // Sum valid numbers, ignoring numbers greater than 1000
+            int sum = numbers
+                .Select(x => int.TryParse(x, out int result) ? result : 0)
+                .Where(n => n <= 1000)
+                .Sum();
+
+            return sum;
+        }
     }
 }
