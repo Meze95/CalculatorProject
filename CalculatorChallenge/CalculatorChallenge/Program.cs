@@ -14,6 +14,7 @@ class Program
             Console.WriteLine(calculator.AddRequirementsFive("2,1001,6"));
             Console.WriteLine(calculator.AddRequirementsSix("//#\n2#5"));
             Console.WriteLine(calculator.AddRequirementsSeven("//[*][!!][%%%]\n1*2!!3%%%4"));
+            Console.WriteLine(calculator.AddRequirementsEight("//[*][!!][r9r]\n11r9r22*hh*33!!44"));
         }
         catch (ArgumentException ex)
         {
