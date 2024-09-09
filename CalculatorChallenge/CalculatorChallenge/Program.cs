@@ -7,12 +7,8 @@ class Program
         Calculations calculator = new Calculations();
         try
         {
-            Console.WriteLine(calculator.Add("1,5000")); // Output: 5001
-            Console.WriteLine(calculator.Add("4,-3"));   // Output: 1
-            Console.WriteLine(calculator.Add("5,tytyt")); // Output: 5
-            Console.WriteLine(calculator.Add("")); // Output: 0
-            Console.WriteLine(calculator.Add(null)); // Output: 0
-            Console.WriteLine(calculator.Add("1,2,3")); // Should throw an exception
+            Console.WriteLine(calculator.AddRequirementsOne("1,5000"));
+            Console.WriteLine(calculator.AddRequirementsTwo("1,2,3,4,5,6,7,8,9,10,11,12")); 
         }
         catch (ArgumentException ex)
         {
