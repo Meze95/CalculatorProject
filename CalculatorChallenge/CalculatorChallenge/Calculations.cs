@@ -163,7 +163,6 @@
 
             string numbersPart = input;
             List<string> delimiters = new List<string> { ",", "\n" }; // Default delimiters
-
             // Check if there is a custom delimiter specified
             if (input.StartsWith("//"))
             {
@@ -187,7 +186,6 @@
                     // Single delimiter case without brackets
                     delimiters.Add(delimiterSection);
                 }
-
                 // Update the number part to exclude the delimiter declaration
                 numbersPart = input.Substring(delimiterEndIndex + 1);
             }
@@ -202,9 +200,7 @@
                 .ToList();
 
             if (negativeNumbers.Count > 0)
-            {
                 throw new ArgumentException($"Negative numbers not allowed: {string.Join(", ", negativeNumbers)}");
-            }
 
             // Sum valid numbers, ignoring numbers greater than 1000
             int sum = numbers
